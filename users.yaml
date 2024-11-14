@@ -1,0 +1,14 @@
+---
+shell: /bin/bash
+remove: false
+myusers:
+  - username: alice
+    comment: Alice in Wonderland
+    groups: developers,admins
+    home: /home/alice
+    state: present
+  - username: bob
+    comment: Bob the Constructor
+    groups: developers
+    home: /home/bob
+    state: present

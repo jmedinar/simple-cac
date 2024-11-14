@@ -1,0 +1,6 @@
+---
+mygroups:
+  - groupname: developers
+    state: present
+  - groupname: admins
+    state: present

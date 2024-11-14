@@ -1,0 +1,30 @@
+---
+- name: Manage Users
+  hosts: all
+  become: true
+  gather_facts: false
+
+  vars_files:
+    - users.yaml
+    - groups.yaml
+
+  tasks:
+
+    - name: Manage groups
+      ansible.builtin.group:
+        name: "{{ item.groupname }}"
+        state: "{{ item.state }}"
+      with_items: "{{ mygroups }}"
+      tags: groups
+
+    - name: Manage users
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        comment: "{{ item.comment }}"
+        shell: "{{ shell }}"
+        groups: "{{ item.groups }}"
+        home: "{{ item.home }}"
+        state: "{{ item.state }}"
+        remove: "{{ remove }}"
+      with_items: "{{ myusers }}"
+      tags: users
